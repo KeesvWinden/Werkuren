@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <base href="/werkuren/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Werkuren bijhouden en per week versturen naar de opdrachtgever.">
+  <meta name="theme-color" content="#4D4D4D">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Werkuren">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <title>Kees van Winden · Werkuren</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #F4F5F6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    #laadscherm {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 26px;
+      background: #F4F5F6;
+      transition: opacity .35s ease;
+    }
+    #laadscherm img {
+      width: min(72vw, 320px);
+      height: auto;
+    }
+    #laadbalk {
+      width: 132px;
+      height: 5px;
+      border-radius: 3px;
+      background: #DCDDDF;
+      overflow: hidden;
+    }
+    #laadbalk span {
+      display: block;
+      width: 40%;
+      height: 100%;
+      border-radius: 3px;
+      background: #FEC901;
+      animation: schuif 1.1s ease-in-out infinite;
+    }
+    @keyframes schuif {
+      0%   { transform: translateX(-110%); }
+      100% { transform: translateX(330%); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Merk-laadscherm: verdwijnt zodra Flutter klaar is -->
+  <div id="laadscherm">
+    <img src="logo.png" alt="Kees van Winden — Verhuur- en aannemingsbedrijf B.V.">
+    <div id="laadbalk"><span></span></div>
+  </div>
+
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var el = document.getElementById('laadscherm');
+      if (!el) return;
+      el.style.opacity = '0';
+      setTimeout(function () { el.remove(); }, 400);
+    });
+  </script>
+
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
+
